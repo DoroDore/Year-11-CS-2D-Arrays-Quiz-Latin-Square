@@ -106,6 +106,24 @@ public class LatinSquare {
      * NOTE: not all Latin squares are diagonal; for example, diagonal Latin squares do not exist for 2x2 or 3x3
      */
     public static boolean isDiagonalLatinSquare(int[][] array2d) {
+        int sumOne = 0;
+        int prodOne = 1;
+        int sumTwo = 0;
+        int prodTwo = 1;
+        for (int i = 0; i < array2d.length; i++) {
+            sumOne += array2d[i][i];
+            prodOne *= array2d[i][i];
+        }
+        for (int i = 0; i < array2d.length; i++) {
+            for (int j = array2d[i].length; j > -1; j--) {
+                sumTwo += array2d[i][j];
+                prodTwo *= array2d[i][j];
+            }
+        }
+        if (sumOne == targetCheckSum1(array2d.length) && prodOne == targetCheckSum2(array2d.length) && sumTwo ==
+                targetCheckSum1(array2d.length) && prodTwo == targetCheckSum2(array2d.length) && isLatinSquare(array2d)) {
+            return true;
+        }
         return false;
     }
 
